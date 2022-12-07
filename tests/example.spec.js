@@ -22,8 +22,13 @@ test("user is able to add a sale dress to cart", async ({ page }) => {
 
   const productPage = new ProductPage(page);
 
-  // click on the first product listed from catalog
+  // click on the first product listed from catalog;
   const firstProductTile = await productPage.productTileAt(0);
+  // hacky way to make sure first tile is loaded and ready
+  firstProductTile
+    .locator("text=/Prices As Marked/")
+    .waitFor({ state: "visible" });
+
   await firstProductTile.click();
   await page.waitForLoadState();
   await expect(page).toHaveURL(/products/);

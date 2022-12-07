@@ -4,9 +4,9 @@ require("dotenv").config();
 
 const config = {
   testDir: "./tests",
-  timeout: 60 * 1000,
+  timeout: 65 * 1000, // should reduce test timeout
   expect: {
-    timeout: 5000,
+    timeout: 20_000,
   },
   /* Run tests in files in parallel (5 workers)*/
   fullyParallel: true,
@@ -29,7 +29,6 @@ const config = {
         ...devices["Desktop Chrome"],
       },
     },
-
     {
       name: "webkit",
       use: {

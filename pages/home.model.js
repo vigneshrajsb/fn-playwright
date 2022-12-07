@@ -1,3 +1,4 @@
+// @ts-check
 import { BASE_URL } from "../config";
 
 export class HomePage {
@@ -16,6 +17,6 @@ export class HomePage {
 
   async handleMysteryOfferPopUp() {
     const popUpClose = this.page.locator(this.mysteryOfferCloseBtn);
-    if (popUpClose) await popUpClose.click();
+    if (popUpClose.isVisible()) await popUpClose.click();
   }
 }

@@ -1,8 +1,8 @@
+// @ts-check
 import { BASE_URL } from "../config";
 
 export class ProductPage {
-  // trying to figure out the difference between loading and loaded time
-  productTile = ".product-tile";
+  productTile = ".collection-list__product-tile";
 
   addToCartBtn = 'text="Add to bag"';
 
@@ -15,7 +15,7 @@ export class ProductPage {
   }
 
   async productTileAt(n) {
-    const tile = this.page.locator(".product-tile").nth(n);
+    const tile = this.page.locator(this.productTile).nth(n);
     await tile.waitFor({ state: "visible" });
     return tile;
   }
