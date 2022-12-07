@@ -1,6 +1,5 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
-s;
 const { HomePage } = require("../pages/home.model");
 const { ProductPage } = require("../pages/product.model");
 
