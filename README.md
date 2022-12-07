@@ -18,6 +18,11 @@ git clone
 npm install
 ```
 
+Install browser binaries with if needed
+```
+npx playwright install
+```
+
 ## Execute tests
 ```
 npm run test
