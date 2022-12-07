@@ -12,14 +12,13 @@ const config = {
   fullyParallel: true,
   workers: 2,
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: 0,
+  retries: 1,
   reporter: "html",
   use: {
     actionTimeout: 30 * 1000,
     baseURL: "https://www.fashionnova.com",
     // collect trace by default
-    trace: "on",
+    trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
   // browser combinations to test with

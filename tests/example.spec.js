@@ -24,10 +24,10 @@ test("user is able to add a sale dress to cart", async ({ page }) => {
 
   // click on the first product listed from catalog;
   const firstProductTile = await productPage.productTileAt(0);
-  // hacky way to make sure first tile is loaded and ready
-  firstProductTile
-    .locator("text=/Prices As Marked/")
-    .waitFor({ state: "visible" });
+  // hacky way to make sure first tile is loaded and ready.
+  await firstProductTile
+    .locator(".product-tile__image-loading-logo")
+    .waitFor({ state: "detached" });
 
   await firstProductTile.click();
   await page.waitForLoadState();
