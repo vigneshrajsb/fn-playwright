@@ -20,6 +20,7 @@ const config = {
     baseURL: "https://www.fashionnova.com",
     // collect trace by default
     trace: "on",
+    screenshot: "only-on-failure",
   },
   // browser combinations to test with
   projects: [
