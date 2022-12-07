@@ -4,13 +4,13 @@ require("dotenv").config();
 
 const config = {
   testDir: "./tests",
-  timeout: 65 * 1000, // should reduce test timeout
+  timeout: 75 * 1000, // should reduce test timeout
   expect: {
     timeout: 20_000,
   },
-  /* Run tests in files in parallel (5 workers)*/
+  /* Run tests in files in parallel (2 workers)*/
   fullyParallel: true,
-  workers: 5,
+  workers: 2,
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: 0,
