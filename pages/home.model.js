@@ -17,6 +17,6 @@ export class HomePage {
 
   async handleMysteryOfferPopUp() {
     const popUpClose = this.page.locator(this.mysteryOfferCloseBtn);
-    if (popUpClose.isVisible()) await popUpClose.click();
+    if (await popUpClose.isVisible()) await popUpClose.click();
   }
 }
