@@ -10,7 +10,7 @@ node -v
 
 ## Clone 
 ```
-git clone 
+git clone https://github.com/vigneshrajsb/fn-playwright.git
 ```
 
 ## Install dependencies
