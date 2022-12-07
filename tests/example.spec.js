@@ -3,6 +3,15 @@ const { test, expect } = require("@playwright/test");
 const { HomePage } = require("../pages/home.model");
 const { ProductPage } = require("../pages/product.model");
 
+/**
+ * Test case:
+ * 1. Navigate to home page
+ * 2. Choose `Sale` from Category menu
+ * 3. Select `Sale dresses` sub menu
+ * 4. Click on the first product listed
+ * 5. Select first available size
+ * 6. Add to bag
+ */
 test("user is able to add a sale dress to cart", async ({ page }) => {
   // navigate to home page
   const homePage = new HomePage(page);
