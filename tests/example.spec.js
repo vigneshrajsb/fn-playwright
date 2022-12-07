@@ -1,21 +1,42 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
+const { test, expect } = require("@playwright/test");
+s;
+const { HomePage } = require("../pages/home.model");
+const { ProductPage } = require("../pages/product.model");
 
-test('homepage has title and links to intro page', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("user is able to add a sale dress to cart", async ({ page }) => {
+  // navigate to home page
+  const homePage = new HomePage(page);
+  await homePage.open();
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  // handle pop up on home page open
+  await homePage.handleMysteryOfferPopUp();
 
-  // create a locator
-  const getStarted = page.getByRole('link', { name: 'Get started' });
+  // navigate through menus to reach Sale dresses page
+  await page.locator(homePage.saleMenuCategoryLink).first().hover();
+  await page.locator(homePage.saleDressesSubMenuLink).click();
 
-  // Expect an attribute "to be strictly equal" to the value.
-  await expect(getStarted).toHaveAttribute('href', '/docs/intro');
+  // wait for page to complete loading
+  await page.waitForLoadState();
+  // validate if navigation succeeded
+  await expect(page).toHaveURL(/collections\/sale-dresses/);
 
-  // Click the get started link.
-  await getStarted.click();
-  
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+  const productPage = new ProductPage(page);
+
+  // click on the first product listed from catalog
+  const firstProductTile = await productPage.productTileAt(0);
+  await firstProductTile.click();
+  await page.waitForLoadState();
+  await expect(page).toHaveURL(/products/);
+
+  // click first available size
+  const sizeOption = await productPage.firsAvailableSize();
+  await sizeOption.waitFor({ state: "visible" });
+  await sizeOption.click();
+
+  // click Add to bag button
+  await productPage.addToCart();
+
+  // assert items added to cart
+  await expect(productPage.itemsInCart).toHaveText("1");
 });
